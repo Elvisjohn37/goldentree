@@ -216,6 +216,8 @@
             }
         }
 
+
+
         .button1 {
             z-index: 9;
             width: 22vw;
@@ -260,8 +262,8 @@
             width: 3vw;
             z-index: 100;
 
-            &:hover {
-                transform: scale(1.1);
+            &.up {
+                transform: rotate(180deg);
             }
         }
 

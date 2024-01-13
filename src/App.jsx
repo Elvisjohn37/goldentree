@@ -2,7 +2,29 @@ import { useState, useEffect } from 'react'
 import styles from './App.module.scss'
 import classnames from 'classnames'
 import { Link } from 'react-scroll'
-import defaultTree from "/src/assets/images/default-tree.png";
+import defaultTree from '/src/assets/images/default-tree.png'
+import brand from '/src/assets/images/Layer_1.png'
+import dragon from '/src/assets/images/GOLDEN TREE 2.png'
+import bag from '/src/assets/images/BAG DESIGN 1.png'
+import shiningTree from '/src/assets/images/shining-tree.png'
+import hand from '/src/assets/images/hand.png'
+import cloud from '/src/assets/images/divider cloud 1.png'
+import copyLine from '/src/assets/images/COPYLINE 1.png'
+import button1 from '/src/assets/images/BUTTON 1.png'
+import arrow from '/src/assets/images/ARROW 1.png'
+import envelope from '/src/assets/images/ENVELOPE 1.png'
+import buttonOpen from '/src/assets/images/BUTTON OPEN 1.png'
+import prizesResults from '/src/assets/images/PRIZES RESULTS.png'
+import notWinCase from '/src/assets/images/NOTWIN CASE.png'
+import buttonOk from '/src/assets/images/BUTTON OK.png'
+import tryAgainButton from '/src/assets/images/TRY AGAIN BUTTON.png'
+import howToPlay from '/src/assets/images/HOW TO PLAY 1.png'
+import howToClaimButton from '/src/assets/images/how to claim button.png'
+import howToClaim from '/src/assets/images/how to claim.png'
+import howToClaimDropdown from '/src/assets/images/how to claim dropdown.png'
+import prizes from '/src/assets/images/prizes.png'
+import footer1 from '/src/assets/images/footer 1.png'
+import layer1 from '/src/assets/images/Layer_1.png'
 
 const App = () => {
     const [isShowPrize, setIsShowPrize] = useState(false)
@@ -16,6 +38,7 @@ const App = () => {
     const [isWin, setIsWin] = useState()
     const [isShowButtonScroll, setIsShowButtonScroll] = useState(true)
     const [activeTree, setActiveTree] = useState(false)
+    const [arrowDirection, setArrowDirection] = useState('down')
 
     const handleShowPrize = () => {
         setIsShowPrize((prev) => !prev)
@@ -30,11 +53,24 @@ const App = () => {
         }
     }
 
+    window.onscroll = function () {
+        if (
+            window.innerHeight + window.pageYOffset >=
+            document.body.offsetHeight
+        ) {
+            setArrowDirection('up')
+        } else {
+            setArrowDirection('down')
+        }
+    }
+
     const initializeTreeClick = () => {
         setStartInitialize(true)
         setShowHand(true)
         document.documentElement.style.overflow = 'hidden'
         setIsShowButtonScroll(false)
+        document.body.scrollTop = 0 // For Safari
+        document.documentElement.scrollTop = 0 // For Chrome, Firefox, IE and Opera
     }
 
     const handleButtonOpen = () => {
@@ -91,11 +127,7 @@ const App = () => {
         <div className={styles.app}>
             <div className={styles.header} onClick={stopGame}>
                 <div className={styles.headerImage}></div>
-                <img
-                    className={styles.brand}
-                    src="/src/assets/images/Layer_1.png"
-                    alt=""
-                />
+                <img className={styles.brand} src={brand} alt="" />
             </div>
             <div className={styles.firstScreen}>
                 <div className={styles.heroImage}></div>
@@ -107,11 +139,7 @@ const App = () => {
                     ])}
                     onClick={stopGame}
                 ></div>
-                <img
-                    className={styles.dragon}
-                    src="/src/assets/images/GOLDEN TREE 2.png"
-                    alt=""
-                />
+                <img className={styles.dragon} src={dragon} alt="" />
                 <div className={styles.fireworkContainer1}>
                     <div className={styles.firework}></div>
                 </div>
@@ -124,7 +152,7 @@ const App = () => {
                         styles.bag,
                         startInitialize && styles.showBag,
                     ])}
-                    src="/src/assets/images/BAG DESIGN 1.png"
+                    src={bag}
                     alt=""
                 />
 
@@ -145,7 +173,7 @@ const App = () => {
                         activeTree && styles.activeTree,
                         styles.shine,
                     ])}
-                    src="/src/assets/images/shining-tree.png"
+                    src={shiningTree}
                     alt=""
                 />
                 <div
@@ -160,7 +188,7 @@ const App = () => {
                             styles.hand,
                             startInitialize && showHand && styles.showHand,
                         ])}
-                        src="/src/assets/images/hand.png"
+                        src={hand}
                         alt=""
                     />
                 </div>
@@ -169,7 +197,7 @@ const App = () => {
                         styles.cloud,
                         startInitialize && styles.showCloud,
                     ])}
-                    src="/src/assets/images/divider cloud 1.png"
+                    src={cloud}
                     alt=""
                     onClick={stopGame}
                 />
@@ -178,7 +206,7 @@ const App = () => {
                         styles.title,
                         startInitialize && styles.showTitle,
                     ])}
-                    src="/src/assets/images/COPYLINE 1.png"
+                    src={copyLine}
                     alt=""
                 />
                 <img
@@ -186,7 +214,7 @@ const App = () => {
                         styles.button1,
                         startInitialize && styles.disableClick,
                     ])}
-                    src="/src/assets/images/BUTTON 1.png"
+                    src={button1}
                     alt=""
                     onClick={initializeTreeClick}
                 />
@@ -199,8 +227,11 @@ const App = () => {
                         duration={500}
                     >
                         <img
-                            className={styles.arrow}
-                            src="/src/assets/images/ARROW 1.png"
+                            className={classnames([
+                                styles.arrow,
+                                styles[arrowDirection],
+                            ])}
+                            src={arrow}
                             alt=""
                         />
                     </Link>
@@ -211,14 +242,10 @@ const App = () => {
                         showEnvelope && styles.showEnvelope,
                     ])}
                 >
-                    <img
-                        className={styles.envelope}
-                        src="/src/assets/images/ENVELOPE 1.png"
-                        alt=""
-                    />
+                    <img className={styles.envelope} src={envelope} alt="" />
                     <img
                         className={styles.buttonOpen}
-                        src="/src/assets/images/BUTTON OPEN 1.png"
+                        src={buttonOpen}
                         alt=""
                         onClick={handleButtonOpen}
                     />
@@ -231,11 +258,7 @@ const App = () => {
                 >
                     <img
                         className={styles.prizesResult}
-                        src={
-                            isWin
-                                ? '/src/assets/images/PRIZES RESULTS.png'
-                                : '/src/assets/images/NOTWIN CASE.png'
-                        }
+                        src={isWin ? prizesResults : notWinCase}
                         alt=""
                     />
                     {!isWin && (
@@ -243,34 +266,22 @@ const App = () => {
                     )}
                     <img
                         className={styles.buttonOk}
-                        src={
-                            isWin
-                                ? '/src/assets/images/BUTTON OK.png'
-                                : '/src/assets/images/TRY AGAIN BUTTON.png'
-                        }
+                        src={isWin ? buttonOk : tryAgainButton}
                         alt=""
                         onClick={isWin ? handleRedirect : restartInitialize}
                     />
                 </div>
             </div>
             <div className={styles.subContent} id="subContent">
-                <img
-                    className={styles.howToplay}
-                    src="/src/assets/images/HOW TO PLAY 1.png"
-                    alt=""
-                />
+                <img className={styles.howToplay} src={howToPlay} alt="" />
                 <div className={styles.coin}></div>
                 <img
                     className={styles.howToClaimButton}
-                    src="/src/assets/images/how to claim button.png"
+                    src={howToClaimButton}
                     alt=""
                 />
 
-                <img
-                    className={styles.howToClaim}
-                    src="/src/assets/images/how to claim.png"
-                    alt=""
-                />
+                <img className={styles.howToClaim} src={howToClaim} alt="" />
                 <div
                     className={classnames([
                         styles.prizesContainer,
@@ -282,7 +293,7 @@ const App = () => {
                             styles.howToClaimDropdown,
                             isShowPrize && styles.show,
                         ])}
-                        src="/src/assets/images/how to claim dropdown.png"
+                        src={howToClaimDropdown}
                         alt=""
                         onClick={handleShowPrize}
                     />
@@ -291,22 +302,14 @@ const App = () => {
                             styles.prizes,
                             isShowPrize && styles.show,
                         ])}
-                        src="/src/assets/images/prizes.png"
+                        src={prizes}
                         alt=""
                     />
                 </div>
             </div>
             <div className={styles.footerContainer}>
-                <img
-                    className={styles.footer}
-                    src="/src/assets/images/footer 1.png"
-                    alt=""
-                />
-                <img
-                    className={styles.footerBrand}
-                    src="/src/assets/images/Layer_1.png"
-                    alt=""
-                />
+                <img className={styles.footer} src={footer1} alt="" />
+                <img className={styles.footerBrand} src={layer1} alt="" />
             </div>
         </div>
     )
