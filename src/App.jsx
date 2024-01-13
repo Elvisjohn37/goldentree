@@ -37,7 +37,7 @@ const App = () => {
     const [playerLife, setPlayerLife] = useState(3)
     const [isWin, setIsWin] = useState()
     const [isShowButtonScroll, setIsShowButtonScroll] = useState(true)
-    const [activeTree, setActiveTree] = useState(false)
+    const [activeTree, setActiveTree] = useState(true)
     const [arrowDirection, setArrowDirection] = useState('down')
 
     const handleShowPrize = () => {
@@ -115,13 +115,13 @@ const App = () => {
 
     let treeShineInterval
 
-    useEffect(() => {
-        treeShineInterval = setInterval(() => {
-            setActiveTree((prev) => !prev)
-        }, 2000)
+    // useEffect(() => {
+    //     treeShineInterval = setInterval(() => {
+    //         setActiveTree((prev) => !prev)
+    //     }, 1000)
 
-        return () => clearInterval(treeShineInterval)
-    }, [])
+    //     return () => clearInterval(treeShineInterval)
+    // }, [])
 
     return (
         <div className={styles.app}>
