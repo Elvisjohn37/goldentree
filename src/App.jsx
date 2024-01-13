@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import styles from './App.module.scss'
 import classnames from 'classnames'
 import { Link } from 'react-scroll'
+import defaultTree from "/src/assets/images/default-tree.png";
 
 const App = () => {
     const [isShowPrize, setIsShowPrize] = useState(false)
@@ -133,7 +134,7 @@ const App = () => {
                         startShake && styles.shake,
                         startInitialize && styles.showTree,
                     ])}
-                    src="/src/assets/images/default-tree.png"
+                    src={defaultTree}
                     alt=""
                 />
                 <img
